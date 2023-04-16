@@ -61,7 +61,7 @@ Basic
 
 # Usage
 
-THe package provides an abstract wagtail page that uses a custom view to serve the Mautic Form.
+The package provides an abstract wagtail page that uses a custom view to serve the Mautic Form.
 
 Below is a sample snippet on how you can use it on your wagtail page that you want to serve the form.
 
@@ -79,7 +79,7 @@ class MailingListSubscribePage(BaseMauticFormPage, Page):
 ```
 
 
-Create the Page as you usual in your CMS admin.
+Create the Page as usual in your CMS admin.
 
 Edit the Page to add the Mautic Form ID
 
@@ -99,9 +99,9 @@ Add the form in your page's template
 ```
 The rendered page should now include a form with matching fields as setup on your Mautic form.
 
-Submitting will send the form data to Mautic and show the thank message that was set
+Submitting will send the form data to Mautic and show the thank you message that was set
 
-You may want to override the default provided `form_thank_you_landing.html` template at `wagtailmautic/form_thank_you_landing.html`
+You may want to override the default provided `form_thank_you_landing.html` template at `wagtailmautic/templates/form_thank_you_landing.html`
 
 - First, create a templates directory in your project's root directory if it does not exist already.
 
