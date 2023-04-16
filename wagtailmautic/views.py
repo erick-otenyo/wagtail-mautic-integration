@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.core.mail import mail_admins
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import Http404
@@ -6,6 +5,7 @@ from django.shortcuts import render
 from django.views.generic import FormView
 
 from .api import BaseApi as MauticApi
+from .errors import WagtailMauticError
 from .forms import MauticForm
 from .utils import get_mautic_client
 
@@ -24,7 +24,7 @@ class MauticFormView(FormView):
         if client:
             return MauticApi(client, endpoint=endpoint)
         else:
-            raise ValidationError("Mautic API Improperly configured")
+            raise WagtailMauticError("Mautic API Improperly configured")
 
     def get_context_data(self, **kwargs):
         """
