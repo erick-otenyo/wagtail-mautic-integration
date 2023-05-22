@@ -12,18 +12,19 @@ Other Mautic functionalities might be added later as need arises.
 
 
 # Installation
-Install using pip - Not yet Published
+Install using pip
 
 ```
-pip install  
+pip install wagtail-mautic
 ```
 
-Add `wagtailmautic` to your installed apps
+Add `wagtailmautic` to your installed apps. Make sure `wagtail.contrib.settings` is also added.
 
 ```
  INSTALLED_APPS = [
         ...
         "wagtailmautic",
+        "wagtail.contrib.settings",
         ...
         ]
 ```
@@ -34,9 +35,38 @@ Run migrations
 python manage.py migrate
 ```
 
-# Settings
 
-`NOTE`: This instructions assume you have knowledge of setting up Wagtail and configuring Mautic, as we don't cover the specifics.
+
+# Mautic API Configuration
+
+The Mautic API needs to be enabled from Mautic. Open your Mautic instance and follow the steps below to enable the Mautic
+API
+
+### Mautic API Setup
+Follow the steps below to ensure the Mautic API is enabled from the Mautic Settings
+
+![Mautic Settings](screenshots/mautic-config.png)
+
+1. Click on the settings icon to show the available settings
+2. Click on Configuration
+3. Select API Settings
+4. Enable API by selecting `Yes`. If using HTTP Basic Auth (username and password for authentication), also select `Yes`
+for Enable HTTP basic auth
+5. Don't forget to Save. You can select Save and Close to Close after saving.
+
+### Using OAuth 2
+If you did not select to use HTTP basic auth, you can set up to use OAuth as below
+
+![Mautic Settings](screenshots/mautic-oauth.png)
+
+1. Click on the settings icon to show the available settings
+2. Click on API Credentials. If API Credentials option is not available, please follow the previous steps to enable the API
+3. Set up the credentials name and Redirect URL
+4. Don't forget to Save. After saving, a new page will be shown with your Client ID and Client Secret that you can use 
+for authentication
+
+
+# Wagtail Mautic Settings
 
 Mautic Settings will be added to the Wagtail Admin Menu as below
 
@@ -98,6 +128,7 @@ Add the form in your page's template
 
 ```
 The rendered page should now include a form with matching fields as setup on your Mautic form.
+You can see a sample page in `sandbox/home/models`.
 
 Submitting will send the form data to Mautic and show the thank you message that was set
 

@@ -58,8 +58,7 @@ class MauticSettings(BaseSiteSetting):
 
 
 class BaseMauticFormPage(models.Model):
-    mautic_form_id = models.CharField(_('Mautic Form ID'),
-                                      max_length=256,
+    mautic_form_id = models.CharField(_('Mautic Form ID'), max_length=256, blank=True, null=True,
                                       help_text=_(
                                           "Form ID to use. Make sure you have created the "
                                           "form with all the required fields on Mautic"),
@@ -72,18 +71,19 @@ class BaseMauticFormPage(models.Model):
     def clean(self):
         super().clean()
 
-        # create mautic api client
-        client = get_mautic_client()
+        if self.mautic_form_id:
+            # create mautic api client
+            client = get_mautic_client()
 
-        if client:
-            api = MauticApi(client=client, endpoint="forms")
-            # check if the form exists
-            form = api.get(self.mautic_form_id)
+            if client:
+                api = MauticApi(client=client, endpoint="forms")
+                # check if the form exists
+                form = api.get(self.mautic_form_id)
 
-            if form.get("errors"):
-                raise ValidationError({
-                    "mautic_form_id": f"Form with id: '{self.mautic_form_id}' does not exist on Mautic. "
-                                      f"Please make sure this form is created on Mautic before saving"})
+                if form.get("errors"):
+                    raise ValidationError({
+                        "mautic_form_id": f"Form with id: '{self.mautic_form_id}' does not exist on Mautic. "
+                                          f"Please make sure this form is created on Mautic before saving"})
 
     def serve(self, request):
         """
@@ -93,10 +93,14 @@ class BaseMauticFormPage(models.Model):
         :rtype: django.http.HttpResponse.
         """
 
-        from .views import MauticFormView
+        if self.mautic_form_id:
+            from .views import MauticFormView
 
-        view = MauticFormView.as_view(page_instance=self)
-        return view(request)
+            view = MauticFormView.as_view(page_instance=self)
+            return view(request)
+
+        # user default Wagtail Page serve method
+        return super().serve(request)
 
     content_panels = [
         FieldPanel('mautic_form_id'),

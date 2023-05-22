@@ -1,0 +1,4 @@
+include README.md
+recursive-include wagtailmautic *.py
+recursive-include wagtailmautic *.html
+recursive-include geomanager/templates *

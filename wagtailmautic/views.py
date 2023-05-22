@@ -21,6 +21,7 @@ class MauticFormView(FormView):
     def get_api_client(self, endpoint=""):
         # Get the mautic settings for the current site
         client = get_mautic_client(self.request)
+
         if client:
             return MauticApi(client, endpoint=endpoint)
         else:
