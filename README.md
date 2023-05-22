@@ -51,16 +51,16 @@ Follow the steps below to ensure the Mautic API is enabled from the Mautic Setti
 2. Click on Configuration
 3. Select API Settings
 4. Enable API by selecting `Yes`. If using HTTP Basic Auth (username and password for authentication), also select `Yes`
-for Enable HTTP basic auth
+under Enable HTTP basic auth
 5. Don't forget to Save. You can select Save and Close to Close after saving.
 
 ### Using OAuth 2
-If you did not select to use HTTP basic auth, you can set up to use OAuth as below
+If you did not select to use HTTP basic auth, you can set up to use OAuth as below:
 
 ![Mautic Settings](screenshots/mautic-oauth.png)
 
 1. Click on the settings icon to show the available settings
-2. Click on API Credentials. If API Credentials option is not available, please follow the previous steps to enable the API
+2. Click on API Credentials. If the API Credentials option is not available, please follow the previous steps to enable the API
 3. Set up the credentials name and Redirect URL
 4. Don't forget to Save. After saving, a new page will be shown with your Client ID and Client Secret that you can use 
 for authentication
@@ -68,7 +68,7 @@ for authentication
 
 # Wagtail Mautic Settings
 
-Mautic Settings will be added to the Wagtail Admin Menu as below
+Mautic Settings will be automatically added to the Wagtail Admin Menu as below
 
 ![Navigation in Wagtail admin](screenshots/locate_mautic_settings.png)
 
@@ -80,6 +80,7 @@ You can use two methods for authentication:
 
 - OAuth2 that requires client id and client secret from Mautic
 - Basic Authentication that needs username and password. To use Basic Auth, you must enable this on Mautic Configuration
+as described in the previous steps above
 
 OAth2
 ![OAuth2](screenshots/oauth.png)
