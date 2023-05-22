@@ -1,4 +1,4 @@
-# Wagtail Mautic
+# Wagtail Mautic Integration
 Integration of [Mautic](https://github.com/mautic/mautic) forms in Wagtail Projects.
 
 # Background
@@ -15,7 +15,7 @@ Other Mautic functionalities might be added later as need arises.
 Install using pip
 
 ```
-pip install wagtail-mautic
+pip install wagtail-mautic-integration
 ```
 
 Add `wagtailmautic` to your installed apps. Make sure `wagtail.contrib.settings` is also added.
